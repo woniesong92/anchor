@@ -230,6 +230,7 @@ export class NodeWallet implements Wallet {
   constructor(readonly payer: Keypair) {}
 
   static local(): NodeWallet {
+    if (isBrowser) return;
     const payer = Keypair.fromSecretKey(
       Buffer.from(
         JSON.parse(
